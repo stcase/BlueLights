@@ -3,16 +3,15 @@ from bluepy.btle import DefaultDelegate, Scanner
 
 class ScanDelegate(DefaultDelegate):
     def handleDiscovery(self, dev, isNewDev, isNewData):
-        if isNewDev:
-            print(f"Discovered device {dev.addr}")
-        elif isNewData:
-            print(f"Received new data from {dev.addr}")
+        print(f"Discovered device {dev.addr}, strength: {dev.rssi}")
 
 
 def main():
     scanner = Scanner()
     scanner.withDelegate(ScanDelegate())
-    scanner.scan(30)
+    devices = scanner.scan(10, passive=False)
+    for dev in devices:
+        print(f"Device {dev.addr} @ strength {dev.rssi}")
 
     
 if __name__ == "__main__":
