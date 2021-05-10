@@ -6,7 +6,7 @@ from tinytuya import BulbDevice
 from bluelights.bluetooth import BluetoothProximity
 from bluelights.domain import Color, LightSwitch
 from bluelights.lights import LightController
-import config
+import config  # type: ignore
 
 
 def main() -> None:
