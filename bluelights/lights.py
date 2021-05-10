@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 class LightController(Thread):
-    def __init__(self, switch_queue: Queue[LightSwitch], lights: Iterable[BulbDevice], default_color: Color, **kwargs):
+    def __init__(self, switch_queue: "Queue[LightSwitch]", lights: Iterable[BulbDevice], default_color: Color, **kwargs):
         self._switch_queue = switch_queue
         self._switches: List[LightSwitch] = []
         self._lights = lights

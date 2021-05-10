@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 class BluetoothProximity(Thread):
     def __init__(self,
-                 switch_queue: Queue[LightSwitch],
+                 switch_queue: "Queue[LightSwitch]",
                  threshold_rssi: int,
                  detection_duration: timedelta,
                  priority: int,
