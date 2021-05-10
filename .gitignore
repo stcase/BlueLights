@@ -1,5 +1,7 @@
 # Python
-env/*
+.env/
+__pycache__/
 
-# Emacs
+# editors
 *~
+.idea/
