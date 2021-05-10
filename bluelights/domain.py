@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Any
 
 
@@ -37,6 +38,13 @@ class LightSwitch:
         self.expiry = expiry
         self.priority = priority
         self.color = color
+
+    def expired(self) -> bool:
+        """
+        Returns:
+            Whether the expiry time has passed for the Light Switch
+        """
+        return self.expiry < datetime.now().timestamp()
 
     def __str__(self) -> str:
         return f"{self.color} @ P{self.priority} until {self.expiry}"

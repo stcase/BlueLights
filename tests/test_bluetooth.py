@@ -21,18 +21,18 @@ class TestBluetoothProximity:
 
 
 class TestBluetoothProximityHandler:
-    class ScanEntry:
+    class MockScanEntry:
         rssi = -30
         addr = "fa:ke:ad:dr"
 
     def test_in_range(self) -> None:
         mock = Mock()
         handler = BluetoothProximityHandler(mock.callback, -50)
-        handler.handleDiscovery(self.ScanEntry(), False, False)
+        handler.handleDiscovery(self.MockScanEntry(), False, False)
         mock.callback.assert_called_once_with("fa:ke:ad:dr", -30)
 
     def test_not_in_range(self) -> None:
         mock = Mock()
         handler = BluetoothProximityHandler(mock.callback, -25)
-        handler.handleDiscovery(self.ScanEntry(), False, False)
+        handler.handleDiscovery(self.MockScanEntry(), False, False)
         mock.callback.assert_not_called()

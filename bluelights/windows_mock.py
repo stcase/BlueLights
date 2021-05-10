@@ -2,6 +2,7 @@
 Because bluepy only works on Linux/raspberry pi, this provides stubs to allow for testing and development on windows
 """
 
+
 class Scanner:
     def __init__(self) -> None:
         pass
