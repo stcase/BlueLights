@@ -17,7 +17,7 @@ class Color:
         self.b = b
 
     def __str__(self) -> str:
-        return f"({self.r}, {self.g}, {self.b})"
+        return f"Color({self.r}, {self.g}, {self.b})"
 
     def __eq__(self, other: Any) -> bool:
         if isinstance(other, Color):

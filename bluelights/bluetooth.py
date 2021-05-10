@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 import logging
 from platform import system
 from queue import Queue
+from threading import Thread
+from time import sleep
 from typing import Callable
 
 if system() == "Linux":
@@ -15,21 +17,30 @@ from bluelights.domain import Color, LightSwitch
 logging.basicConfig(level=logging.DEBUG)
 
 
-class BluetoothProximity:
-    def __init__(self, switch_queue: Queue[LightSwitch], threshold_rssi: int, detection_duration: timedelta, priority: int, color: Color):
+class BluetoothProximity(Thread):
+    def __init__(self,
+                 switch_queue: Queue[LightSwitch],
+                 threshold_rssi: int,
+                 detection_duration: timedelta,
+                 priority: int,
+                 color: Color,
+                 **kwargs):
         self._switch_queue = switch_queue
         self._threshold_rssi = threshold_rssi
         self._detection_duration = detection_duration
         self._priority = priority
         self._color = color
 
+        super().__init__(**kwargs)
+
     def run(self) -> None:
         scanner = Scanner()
         handler = BluetoothProximityHandler(self.flick_light_switch, self._threshold_rssi)
         scanner.withDelegate(handler)
-        devices = scanner.scan(60, passive=True)
-        for dev in devices:
-            print(f"Device {dev.addr} @ strength {dev.rssi}")
+        continue_loop = True
+        while continue_loop:
+            sleep(1)
+            scanner.scan(60, passive=True)
 
     def flick_light_switch(self, address: str, rssi: int) -> None:
         logging.info(f"Device {address} in range ({rssi})")
