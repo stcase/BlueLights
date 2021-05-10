@@ -11,7 +11,7 @@ import config  # type: ignore
 
 def main() -> None:
     d = BulbDevice(config.bulb["id"], config.bulb["ip"], config.local_key)
-    d.set_version(3.3)
+    d.set_version(config.bulb["version"])
     d.status()
 
     switch_queue: Queue[LightSwitch] = Queue()
