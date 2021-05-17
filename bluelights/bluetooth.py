@@ -46,7 +46,7 @@ class BluetoothProximity(Thread):
         logging.info(f"Device {address} in range ({rssi})")
         expiry = (datetime.now() + self._detection_duration).timestamp()
         flick = LightSwitch(expiry, self._priority, self._color)
-        logging.debug("Sending message {switch}")
+        logging.debug(f"Sending message {flick}")
         self._switch_queue.put(flick)
 
 
