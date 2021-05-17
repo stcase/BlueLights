@@ -3,8 +3,8 @@
 # BlueLights
 Automatic lights controlled by Bluetooth proximity detection.
 
-These are lights using the Tuya platform that will change colors or turn on/off based on the presence of a Bluetooth
-device, like your phone or smartwatch. When you walk into a room with them, watch them automatically turn on, and
+This is software to control Tuya lights that will change colors or turn on and off based on the presence of a Bluetooth
+device, like your phone or smartwatch. When you walk into a room watch them automatically turn on, and
 automatically turn off when you leave. No need to pair devices, it will react to any Bluetooth broadcast. All signalling
 is done over the Wi-Fi network.
 
